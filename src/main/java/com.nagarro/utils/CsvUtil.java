@@ -17,11 +17,11 @@ public class CsvUtil {
 
     public static List<Employee> getParsedData(MultipartFile file) {
 
+        List<Employee> employees = new ArrayList<Employee>();
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(file.getInputStream()))) {
 
             String row = null;
             String[] data = null;
-            List<Employee> employees = new ArrayList<Employee>();
             Employee employee;
             boolean firstRow = true;
             while ((row = reader.readLine()) != null) {
@@ -38,12 +38,11 @@ public class CsvUtil {
                     employees.add(employee);
                 }
             }
-            return employees;
 
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return null;
+        return employees;
     }
 
 }
